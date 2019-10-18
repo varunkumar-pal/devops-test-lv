@@ -1,0 +1,28 @@
+# install rpmbuild to build an rpm file based on the spec file
+yum install rpm-build
+
+#copy the source tar file to SOURCES directory
+cd /root/rpmbuild/SOURCES
+cp /opt/temp/automation.tar.gz .
+
+# start the build
+cd /root/rpmbuild/SPECS
+
+# perform all phases of the build process
+rpmbuild -ba automation.spec
+
+# verify if source rpm file is present
+ls -l /root/rpmbuild/SRPMS
+#automation-1.0.src.rpm
+
+# verify if binary rpm is created
+ls -l /root/rpmbuild/RPMS/x86_64
+#automation-1.0.x86_64.rpm
+
+# install the binary rpm
+rpm -ivvh /root/rpmbuild/RPMS/x86_64/automation-1.0.x86_64.rpm
+
+# verify the installation
+rpm -qa automation
+#automation-1.0.x86_64
+

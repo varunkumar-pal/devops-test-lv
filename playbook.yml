@@ -1,0 +1,32 @@
+---
+- hosts: prodhosts
+  become: true
+  tasks:
+          - name: Install rpm-build
+            yum:
+                name: rpm-build
+                
+          - name: Copy SPEC file
+            copy:
+                src: automation.spec 
+                dest: /root/rpmbuild/SPECS
+                
+          - name: Copy automation.tar.gz file
+            copy:
+                src: automation.tar.gz
+                dest: /root/rpmbuild/SOURCES
+                
+          - name: Build rpm file
+            command: "rpmbuild -ba automation.spec"
+          
+          - name: Install package
+            yum:
+                name: automation-1.0.x86_64.rpm
+                state: present
+                
+          - name: Check if package was installed successfully
+            command: rpm -q --qf "%{VERSION}\n" package
+            args:
+                warn: false
+          
+                
