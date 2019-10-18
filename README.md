@@ -1,5 +1,5 @@
 # devops-test-lv
-# Thw following files have been added for the Docker Challenge:
+# The following files have been added for the Docker Challenge:
 
 Docker.zip
 which contains
@@ -16,6 +16,7 @@ Dockerfile - within which the following tasks are performed
 The other files that are contained in the zip are 
 tomcat-users.xml and context.xml file
 
+# come to think of it - I should have used multi-stage build in Dockerfile.
 
 ### Automation Challenge:
 
